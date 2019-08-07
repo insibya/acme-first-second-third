@@ -6,13 +6,26 @@
       }
       #lists > div {
         height: 400px;
-        width: 400px;
+        width: 350px;
         border: solid 1px salmon;
-        padding: 20px
+        padding: 20px;
+        margin: 10px
       }
       #lists button {
+        display: flex;
         height: 50px;
         width: 350px;
+        justify-content: center
+      }
+      ul {
+        padding: 0;
+      }
+      li {
+        display: flex;
+        height: 30px;
+        width: 330px;
+        align-items: center;
+        padding: 10px;
       }
       .selected, .forward, .backward {
         background-color: salmon
@@ -25,19 +38,19 @@
       <div id='first'>
           <button><</button>
           <button class='forward' type='button'>></button>
-        <h1>FIRST</h1>
+        <h2>FIRST</h2>
         <ul id='firstList'></ul>
       </div>
       <div id='second'>
           <button class='backward' type='button'><</button>
           <button class='forward' type='button'>></button>
-        <h1>SECOND</h1>
+        <h2>SECOND</h2>
         <ul id='secondList'></ul>
       </div>
       <div id='third'>
           <button class='backward' type='button'><</button>
           <button>></button>
-        <h1>THIRD</h1>
+        <h2>THIRD</h2>
         <ul id='thirdList'></ul>
       </div>
     </div>

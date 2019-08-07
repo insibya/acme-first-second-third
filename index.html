@@ -75,16 +75,18 @@
           if (ev.target.className === 'forward') {
             users.forEach(user => {
               if (user.slot === ev.target.parentElement.id && user.selected) {
-                user.slot === 'first' ? user.slot = 'second' : null;
                 user.slot === 'second' ? user.slot = 'third' : null;
+                user.slot === 'first' ? user.slot = 'second' : null;
+                console.log(user.slot);
               }
             })
           }
           if (ev.target.className === 'backward') {
             users.forEach(user => {
               if (user.slot === ev.target.parentElement.id && user.selected) {
-                user.slot === 'third' ? user.slot = 'second' : null;
                 user.slot === 'second' ? user.slot = 'first' : null;
+                user.slot === 'third' ? user.slot = 'second' : null;
+                console.log(user.slot);
               }
             })
           }

@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <style>
+      #lists {
+        display: flex
+      }
+      #lists > div {
+        height: 400px;
+        width: 400px;
+        border: solid 1px salmon;
+        padding: 20px
+      }
+      #lists button {
+        height: 50px;
+        width: 350px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Acme First, Second, Third</h1>
+    <div id='lists'>
+      <div>
+        <button>></button>
+        <button><</button>
+        <h1>FIRST</h1>
+        <ul id='first'></ul>
+      </div>
+      <div>
+          <button>></button>
+          <button><</button>
+        <h1>SECOND</h1>
+        <ul id='second'></ul>
+      </div>
+      <div>
+          <button>></button>
+          <button><</button>
+        <h1>THIRD</h1>
+        <ul id='third'></ul>
+      </div>
+    </div>
+    <script>
+      const slots = ['first', 'second', 'third'];
+    
+      const users = [
+        {id: 1, name: 'moe', slot: 'first'},
+        {id: 2, name: 'larry', slot: 'second'},
+        {id: 3, name: 'curly', slot: 'third'},
+        {id: 4, name: 'lucy', slot: 'third', selected: true}
+      ];
+      
+      const render = () => {        
+        const listEntries = users.map(user => 
+          `<li> ${user.name} </li>`);
+        users.forEach((user, idx) => 
+          document.querySelector(`#${user.slot}`).innerHTML = listEntries[idx]);
+      }
+
+      render();
+    </script>
+  </body>  
+</html>

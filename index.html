@@ -14,7 +14,7 @@
         height: 50px;
         width: 350px;
       }
-      .selected {
+      .selected, .forward, .backward {
         background-color: salmon
       }
     </style>
@@ -22,23 +22,23 @@
   <body>
     <h1>Acme First, Second, Third</h1>
     <div id='lists'>
-      <div>
-        <button>></button>
-        <button><</button>
+      <div id='first'>
+          <button><</button>
+          <button class='forward' type='button'>></button>
         <h1>FIRST</h1>
-        <ul id='first'></ul>
+        <ul id='firstList'></ul>
       </div>
-      <div>
-          <button>></button>
-          <button><</button>
+      <div id='second'>
+          <button class='backward' type='button'><</button>
+          <button class='forward' type='button'>></button>
         <h1>SECOND</h1>
-        <ul id='second'></ul>
+        <ul id='secondList'></ul>
       </div>
-      <div>
+      <div id='third'>
+          <button class='backward' type='button'><</button>
           <button>></button>
-          <button><</button>
         <h1>THIRD</h1>
-        <ul id='third'></ul>
+        <ul id='thirdList'></ul>
       </div>
     </div>
     <script>
@@ -53,12 +53,12 @@
             
       const render = () => {
         slots.forEach(slot => {
-          document.querySelector(`#${slot}`).innerHTML = '';
+          document.querySelector(`#${slot}List`).innerHTML = '';
         })
         const listEntries = users.map(user =>
           `<li class='${user.selected ? 'selected' : null}'> ${user.name} </li>`);
         users.map((user, idx) =>
-          document.querySelector(`#${user.slot}`).innerHTML += listEntries[idx]);
+          document.querySelector(`#${user.slot}List`).innerHTML += listEntries[idx]);
       }
       
       const list = document.querySelector('#lists');
@@ -71,6 +71,24 @@
             };
           })
         };
+        if (ev.target.tagName === 'BUTTON') {
+          if (ev.target.className === 'forward') {
+            users.forEach(user => {
+              if (user.slot === ev.target.parentElement.id && user.selected) {
+                user.slot === 'first' ? user.slot = 'second' : null;
+                user.slot === 'second' ? user.slot = 'third' : null;
+              }
+            })
+          }
+          if (ev.target.className === 'backward') {
+            users.forEach(user => {
+              if (user.slot === ev.target.parentElement.id && user.selected) {
+                user.slot === 'third' ? user.slot = 'second' : null;
+                user.slot === 'second' ? user.slot = 'first' : null;
+              }
+            })
+          }
+        }
         render();
       })
       

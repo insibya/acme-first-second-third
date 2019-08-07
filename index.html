@@ -14,6 +14,9 @@
         height: 50px;
         width: 350px;
       }
+      .selected {
+        background-color: salmon
+      }
     </style>
   </head>
   <body>
@@ -47,14 +50,30 @@
         {id: 3, name: 'curly', slot: 'third'},
         {id: 4, name: 'lucy', slot: 'third', selected: true}
       ];
-      
-      const render = () => {        
-        const listEntries = users.map(user => 
-          `<li> ${user.name} </li>`);
-        users.forEach((user, idx) => 
-          document.querySelector(`#${user.slot}`).innerHTML = listEntries[idx]);
+            
+      const render = () => {
+        slots.forEach(slot => {
+          document.querySelector(`#${slot}`).innerHTML = '';
+        })
+        const listEntries = users.map(user =>
+          `<li class='${user.selected ? 'selected' : null}'> ${user.name} </li>`);
+        users.map((user, idx) =>
+          document.querySelector(`#${user.slot}`).innerHTML += listEntries[idx]);
       }
+      
+      const list = document.querySelector('#lists');
 
+      list.addEventListener('click', ev => {
+        if (ev.target.tagName === 'LI') {
+          users.forEach((user, idx) => {
+            if (user.name === ev.target.innerHTML.trim()) {
+              users[idx].selected ? users[idx].selected = false : users[idx].selected = true;
+            };
+          })
+        };
+        render();
+      })
+      
       render();
     </script>
   </body>  
